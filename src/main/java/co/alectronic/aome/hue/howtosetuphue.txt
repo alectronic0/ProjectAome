@@ -1,0 +1,19 @@
+Detect the IP of your Hue;
+RestClient.get("https://www.meethue.com/api/nupnp")[{"internalipaddress"}];//detect Bridge
+
+click Hue Bridge Button
+
+POST
+http://<bridge ip address>/api
+[{"devicetype":"my_hue_app#iphone peter"}]
+
+REPLY Will be
+[{success:{username:}}]
+
+then test.
+
+
+
+
+RULES
+https://developers.meethue.com/things-you-need-know

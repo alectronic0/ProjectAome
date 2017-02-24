@@ -25,10 +25,9 @@ public class RestClient {
             header.keySet().forEach(k -> builder.header(k,header.get(k)));
 
             String response = builder.get(String.class);
-            JSONObject jsonObject = new JSONObject(response);
-
-            s = jsonObject.toString(4);
-
+//            JSONObject jsonObject = new JSONObject(response);
+//            s = jsonObject.toString(4);
+            s = response;
         } catch (UniformInterfaceException e){
             s = e.toString();
         } catch (Exception e){
@@ -53,14 +52,16 @@ public class RestClient {
             header.keySet().forEach(k -> builder.header(k,header.get(k)));
 
             String response = builder.put(String.class,requestBody);
-            JSONObject jsonObject = new JSONObject(response);
+//            JSONObject jsonObject = new JSONObject(response);
+            //error if its not a jsonobject, jsonarray is done by hue atm.
 
-            s = jsonObject.toString(4);
-
+//            s = jsonObject.toString(4);
+            s = response;
         } catch (UniformInterfaceException e){
             s = e.toString();
         } catch (Exception e){
-            e.printStackTrace();
+
+            s = e.toString();
         }
         return s;
     }
