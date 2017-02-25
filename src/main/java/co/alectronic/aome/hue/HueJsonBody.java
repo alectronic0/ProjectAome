@@ -72,7 +72,7 @@ public class HueJsonBody {
     }
 
 
-    public String createUser(String devicename){
+    public static String createUser(String devicename){
         String s = null;
         JSONObject jo = null;
 
@@ -100,7 +100,7 @@ public class HueJsonBody {
         return s;
     }
 
-    public String deleteUser(String id){
+    public static String deleteUser(String id){
         String ip = "http://"+detectBridge()+"/api";
         String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY,"").toString();
 
@@ -108,25 +108,14 @@ public class HueJsonBody {
         System.out.println(s);
 
         return RestClient.delete(s);
-
     }
 
-    @Test
-    public void deleteTest(){
-        String ip = "http://"+detectBridge()+"/api";
-        String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY,"").toString();
 
-        String username = createUser("aome#alectronic0");
-
-        if(username != null){
-            System.out.println(deleteUser(username));
-        }else {
-            System.out.println("no user to delete");
-        }
-        System.out.println(new JSONObject(RestClient.get(ip+"/" + hueKey + "/config")).getJSONObject("whitelist").toString(4));
+    public static String updateLight(String hueUrl, String hueKey, String lightId, boolean on, int bri, int hue, int sat) {
+        return RestClient.put(hueUrl + hueKey + "/lights/"+lightId+"/state", new HashMap<>(), HueJsonBody.lightBody(on, bri, hue, sat));
     }
-    
-    
+
+
     
     
     
