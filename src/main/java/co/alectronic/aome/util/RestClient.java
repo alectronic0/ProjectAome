@@ -14,6 +14,10 @@ import java.util.Map;
  */
 public class RestClient {
 
+    public  static HashMap<String,Object> getAuthHeader(String type,String key){
+        return new HashMap<String, Object>() {{put("Authorization",type+" "+ key);}};
+    }
+
     /*
     GET
      */

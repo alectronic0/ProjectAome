@@ -1,9 +1,7 @@
-package co.alectronic.aome.hue;
+package co.alectronic.aome.iot.hue;
 
-import co.alectronic.aome.nest.NestJsonBody;
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 

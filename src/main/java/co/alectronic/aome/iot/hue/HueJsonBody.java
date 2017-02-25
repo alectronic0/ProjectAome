@@ -1,13 +1,11 @@
-package co.alectronic.aome.hue;
+package co.alectronic.aome.iot.hue;
 
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.junit.Test;
 
-import java.net.URL;
 import java.util.HashMap;
 
 import static co.alectronic.aome.core.Constants.HUE_API_KEY;

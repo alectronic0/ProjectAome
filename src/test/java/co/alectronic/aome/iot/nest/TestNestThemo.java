@@ -1,8 +1,6 @@
-package co.alectronic.aome.nest;
+package co.alectronic.aome.iot.nest;
 
 import co.alectronic.aome.util.PropertyIO;
-import co.alectronic.aome.util.RestClient;
-import org.json.JSONObject;
 import org.junit.Test;
 
 import java.util.Map;

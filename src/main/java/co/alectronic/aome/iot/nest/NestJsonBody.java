@@ -1,4 +1,6 @@
-package co.alectronic.aome.nest;
+package co.alectronic.aome.iot.nest;
+
+import co.alectronic.aome.util.RestClient;
 
 import java.util.HashMap;
 
@@ -12,7 +14,8 @@ public class NestJsonBody {
 
     }
 
-    public  static HashMap<String,Object> getAuthHeader(String nestKey){
-        return new HashMap<String, Object>() {{put("Authorization","Bearer "+ nestKey);}};
+    public  static HashMap<String,Object> getAuthHeader(String key){
+        return RestClient.getAuthHeader("Bearer",key);
     }
+
 }

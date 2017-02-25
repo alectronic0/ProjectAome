@@ -1,4 +1,4 @@
-package co.alectronic.aome.hue;
+package co.alectronic.aome.iot.hue;
 
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import static co.alectronic.aome.core.Constants.HUE_API_KEY;
 import static co.alectronic.aome.core.Constants.configFile;
-import static co.alectronic.aome.hue.HueJsonBody.*;
 
 /**
  * Created by alec on 25/02/17.

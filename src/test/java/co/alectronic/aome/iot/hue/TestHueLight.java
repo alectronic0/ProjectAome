@@ -1,4 +1,4 @@
-package co.alectronic.aome.hue;
+package co.alectronic.aome.iot.hue;
 
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
