@@ -26,6 +26,7 @@ public class Constants {
     public final static String NEST_API_URL = NEST_API + SP_M + URL;
     public final static String HUE_API_URL = HUE_API + SP_M + URL;
 
+    public final static String configFile = "src/main/resources/settings.cfg";
 
 
 

@@ -16,9 +16,6 @@ import co.alectronic.aome.nest.NestJsonBody;
 
 public class main {
 
-    // You will need to create this file
-    public final static String configFile = "src/main/resources/settings.cfg";
-
     @Test
     public void test(){
 
