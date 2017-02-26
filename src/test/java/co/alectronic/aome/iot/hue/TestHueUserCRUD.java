@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.junit.Test;
 
 import static co.alectronic.aome.core.Constants.HUE_API_KEY;
+import static co.alectronic.aome.core.Constants.HUE_API_URL;
 import static co.alectronic.aome.core.Constants.configFile;
 
 /**
@@ -15,8 +16,7 @@ public class TestHueUserCRUD {
 
 
     @Test
-    public static void createDeleteTest(){
-        String ip = "http://"+HueJsonBody.detectBridge()+"/api";
+    public void createDeleteTest(){
         String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY,"").toString();
 
         String username = HueJsonBody.createUser("aome#Test");
@@ -26,7 +26,7 @@ public class TestHueUserCRUD {
         }else {
             System.out.println("no user to delete");
         }
-        System.out.println(new JSONObject(RestClient.get(ip+"/" + hueKey + "/config")).getJSONObject("whitelist").toString(4));
+        System.out.println(new JSONObject(RestClient.get(HUE_API_URL+"/" + hueKey + "/config")).getJSONObject("whitelist").toString(4));
     }
 
 

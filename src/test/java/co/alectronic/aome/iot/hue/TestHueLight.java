@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import static co.alectronic.aome.core.Constants.*;
 import static co.alectronic.aome.core.Constants.HUE_API_URL;
@@ -16,17 +17,24 @@ import static co.alectronic.aome.core.Constants.HUE_API_URL;
 public class TestHueLight {
 
     @Test
-    public void chnageLight(){
+    public void changeLight(){
 
         Map prop = PropertyIO.getProperties(configFile);
         String hueKey = prop.getOrDefault(HUE_API_KEY,"").toString();
-        String hueUrl = prop.getOrDefault(HUE_API_URL,"").toString();
 
+        Random rand = new Random(65535);
+
+        int bri = 255;
+        int sat = 255;
 
         int i = 0;
         int x = 1000;
-        while(i < 65535) {
-            HueJsonBody.updateLight(hueUrl,hueKey,"4",true,255,i,255);
+        while(true) {
+            HueJsonBody.updateLight(HUE_API_URL,hueKey,"1",true,bri,rand.nextInt(65535),sat);
+            HueJsonBody.updateLight(HUE_API_URL,hueKey,"2",true,bri,rand.nextInt(65535),sat);
+            HueJsonBody.updateLight(HUE_API_URL,hueKey,"3",true,bri,rand.nextInt(65535),sat);
+//            HueJsonBody.updateLight(HUE_API_URL,hueKey,"4",true,bri ,rand.nextInt(65535),sat);
+
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -34,18 +42,18 @@ public class TestHueLight {
             }
             i = i+x;
         }
-
-        while(i > 0) {
-            HueJsonBody.updateLight(hueUrl,hueKey,"4",true,255,i,255);
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            i = i-x;
-        }
-
-        RestClient.put(hueUrl + hueKey + "/lights/4/state", new HashMap<>(), HueJsonBody.lightBody(false));
+//
+//        while(i > 0) {
+//            HueJsonBody.updateLight(HUE_API_URL,hueKey,"4",true,255,i,255);
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            i = i-x;
+//        }
+//
+//        RestClient.put(HUE_API_URL + hueKey + "/lights/4/state", new HashMap<>(), HueJsonBody.lightBody(false));
 
 
 

@@ -20,7 +20,7 @@ public class TestNest {
     public void getNestInfo(){
         Map prop = PropertyIO.getProperties(configFile);
         String nestKey = prop.getOrDefault(NEST_API_KEY,"").toString();
-        String nestUrl = prop.getOrDefault(NEST_API_URL,"").toString();
+        String nestUrl = NEST_API_URL;
 
         System.out.println(new JSONObject(RestClient.get(nestUrl, NestJsonBody.getAuthHeader(nestKey))).toString(4));
 

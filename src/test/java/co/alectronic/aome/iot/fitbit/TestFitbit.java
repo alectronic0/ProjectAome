@@ -35,10 +35,9 @@ public class TestFitbit {
     public void testFitbitPath(String path){
         Map prop = PropertyIO.getProperties(configFile);
         String fitbitKey = prop.getOrDefault(FITBIT_API_KEY,"").toString();
-        String fitbitUrl = prop.getOrDefault(FITBIT_API_URL,"").toString();
 
 
-        String s = RestClient.get(fitbitUrl+path,FitbitJsonBody.getAuthHeader(fitbitKey));
+        String s = RestClient.get(FITBIT_API_URL+path,FitbitJsonBody.getAuthHeader(fitbitKey));
         System.out.println(s);
 
         Object json = new JSONTokener(s).nextValue();

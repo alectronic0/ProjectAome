@@ -20,9 +20,8 @@ public class TestHue {
     public void getHueInfo(){
         Map prop = PropertyIO.getProperties(configFile);
         String hueKey = prop.getOrDefault(HUE_API_KEY,"").toString();
-        String hueUrl = prop.getOrDefault(HUE_API_URL,"").toString();
 
-        System.out.println(new JSONObject(RestClient.get(hueUrl+hueKey+"/")).toString(4));
+        System.out.println(new JSONObject(RestClient.get(HUE_API_URL+hueKey+"/")).toString(4));
     }
 
 }
