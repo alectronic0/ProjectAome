@@ -17,7 +17,7 @@ public class TestHueUserCRUD {
 
     @Test
     public void createDeleteTest(){
-        String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY,"").toString();
+        String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY, "");
 
         String username = HueJsonBody.createUser("aome#Test");
 

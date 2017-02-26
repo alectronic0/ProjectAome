@@ -3,7 +3,11 @@ package co.alectronic.aome.util;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import com.sun.org.apache.bcel.internal.generic.Select;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
@@ -22,31 +26,8 @@ public class RestClient {
     GET
      */
     //Need to be a http:// https://
-    public static String get(String url){
-        return get(url,new HashMap<String,Object>());
-    }
-
-    public static String get(String url, Map<String,Object> header){
-        String s ="";
-
-        try {
-            Client c = Client.create();
-
-            WebResource.Builder builder = c.resource(url).accept(MediaType.APPLICATION_JSON_TYPE);
-
-            header.keySet().forEach(k -> builder.header(k,header.get(k)));
-
-            String response = builder.get(String.class);
-//            JSONObject jsonObject = new JSONObject(response);
-//            s = jsonObject.toString(4);
-            s = response;
-        } catch (UniformInterfaceException e){
-            s = e.toString();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return s;
-    }
+    public static String get(String url){return get(url,new HashMap<String,Object>());}
+    public static String get(String url, Map<String,Object> header){return restClientCall("get",url,header);}
 
 
     /*
@@ -55,38 +36,12 @@ public class RestClient {
     public static String put(String url){
         return put(url,"{}");
     }
-
     public static String put(String url,Map<String,Object> header){
         return put(url,header,"{}");
     }
-
-    public static String put(String url,String body){
-        return put(url,new HashMap<String,Object>(),"{}");
-    }
-
+    public static String put(String url,String body){return put(url,new HashMap<String,Object>(),body);}
     public static String put(String url, Map<String,Object> header,String requestBody){
-        String s ="";
-
-        try {
-            Client c = Client.create();
-
-            WebResource.Builder builder = c.resource(url).accept(MediaType.APPLICATION_JSON_TYPE);
-
-            header.keySet().forEach(k -> builder.header(k,header.get(k)));
-
-            String response = builder.put(String.class,requestBody);
-//            JSONObject jsonObject = new JSONObject(response);
-            //error if its not a jsonobject, jsonarray is done by hue atm.
-
-//            s = jsonObject.toString(4);
-            s = response;
-        } catch (UniformInterfaceException e){
-            s = e.toString();
-        } catch (Exception e){
-
-            s = e.toString();
-        }
-        return s;
+        return restClientCall("put",url,header,requestBody);
     }
 
     /*
@@ -95,39 +50,13 @@ public class RestClient {
     public static String post(String url){
         return post(url,"{}");
     }
-
     public static String post(String url,Map<String,Object> header){
         return post(url,header,"{}");
     }
-
     public static String post(String url,String body){
         return post(url,new HashMap<String,Object>(),body);
     }
-
-    public static String post(String url, Map<String,Object> header,String requestBody){
-        String s ="";
-
-        try {
-            Client c = Client.create();
-
-            WebResource.Builder builder = c.resource(url).accept(MediaType.APPLICATION_JSON_TYPE);
-
-            header.keySet().forEach(k -> builder.header(k,header.get(k)));
-
-            String response = builder.post(String.class,requestBody);
-//            JSONObject jsonObject = new JSONObject(response);
-            //error if its not a jsonobject, jsonarray is done by hue atm.
-
-//            s = jsonObject.toString(4);
-            s = response;
-        } catch (UniformInterfaceException e){
-            s = e.toString();
-        } catch (Exception e){
-
-            s = e.toString();
-        }
-        return s;
-    }
+    public static String post(String url, Map<String,Object> header,String requestBody){return restClientCall("post",url,header,requestBody);}
 
     /*
     DELETE
@@ -145,27 +74,40 @@ public class RestClient {
     }
 
     public static String delete(String url, Map<String,Object> header,String requestBody){
+        return restClientCall("delete",url,header,requestBody);
+    }
+
+
+    public static String restClientCall(String restType, String url, Map<String,Object> header){
+        return restClientCall(restType,url,header,null);
+    }
+
+    public static String restClientCall(String restType, String url, Map<String,Object> header,String requestBody){
         String s ="";
+        String response = "";
 
         try {
             Client c = Client.create();
-
             WebResource.Builder builder = c.resource(url).accept(MediaType.APPLICATION_JSON_TYPE);
+            if(header !=null) {header.keySet().forEach(k -> builder.header(k, header.get(k)));}
 
-            header.keySet().forEach(k -> builder.header(k,header.get(k)));
+            switch (restType){
+                case "get": response = builder.get(String.class); break;
+                case "put": response = requestBody == null ? builder.put(String.class) : builder.put(String.class,requestBody); break;
+                case "post": response = requestBody == null ? builder.post(String.class) : builder.post(String.class,requestBody); break;
+                case "delete": response = requestBody == null ? builder.delete(String.class) : builder.delete(String.class,requestBody) ; break;
+                default: response = "{\"error\":\"Unknown Rest Type\"}"; break;
+            }
 
-            String response = builder.delete(String.class);
-//            JSONObject jsonObject = new JSONObject(response);
-            //error if its not a jsonobject, jsonarray is done by hue atm.
+            Object obj = new JSONTokener(response).nextValue();
+            if (obj instanceof JSONObject){s = ((JSONObject)obj).toString(4);}
+            else if (obj instanceof JSONArray){s = ((JSONArray)obj).toString(4);}
+            else{s = obj.toString();}
 
-//            s = jsonObject.toString(4);
-            s = response;
-        } catch (UniformInterfaceException e){
-            s = e.toString();
-        } catch (Exception e){
-
-            s = e.toString();
-        }
+        } catch (Exception e){s = e.toString();}
         return s;
     }
+
+
+
 }

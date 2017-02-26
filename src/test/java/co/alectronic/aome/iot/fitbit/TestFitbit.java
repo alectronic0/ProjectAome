@@ -12,9 +12,6 @@ import java.util.Map;
 import static co.alectronic.aome.core.Constants.*;
 import static co.alectronic.aome.core.Constants.configFile;
 
-/**
- * Created by alec on 25/02/17.
- */
 public class TestFitbit {
 
     @Test
@@ -33,24 +30,8 @@ public class TestFitbit {
     }
 
     public void testFitbitPath(String path){
-        Map prop = PropertyIO.getProperties(configFile);
-        String fitbitKey = prop.getOrDefault(FITBIT_API_KEY,"").toString();
-
-
-        String s = RestClient.get(FITBIT_API_URL+path,FitbitJsonBody.getAuthHeader(fitbitKey));
-        System.out.println(s);
-
-        Object json = new JSONTokener(s).nextValue();
-        if (json instanceof JSONObject){
-            JSONObject jo = (JSONObject)json;
-            s = jo.toString(4);
-        }
-        else if (json instanceof JSONArray){
-            JSONArray jo = (JSONArray)json;
-            s = jo.toString(4);
-        }
-
-        System.out.println(s);
+        String fitbitKey = PropertyIO.getProperties(configFile).getOrDefault(FITBIT_API_KEY, "");
+        System.out.println(RestClient.get(FITBIT_API_URL+path,FitbitJsonBody.getAuthHeader(fitbitKey)));
     }
 
 

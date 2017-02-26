@@ -1,27 +1,16 @@
 package co.alectronic.aome.iot.nest;
 
 import co.alectronic.aome.util.PropertyIO;
+import co.alectronic.aome.util.RestClient;
 import org.junit.Test;
 
-import java.util.Map;
+import static co.alectronic.aome.core.Constants.*;
 
-import static co.alectronic.aome.core.Constants.NEST_API_KEY;
-import static co.alectronic.aome.core.Constants.configFile;
-
-/**
- * Created by alec on 25/02/17.
- */
 public class TestNestThemo {
 
     @Test
     public void changeTemp(){
-        Map prop = PropertyIO.getProperties(configFile);
-        String nestKey = prop.getOrDefault(NEST_API_KEY,"").toString();
-
-//      SET TEMP
-//        System.out.println(RestClient.put(NEST_API_URL, NestJsonBody.getAuthHeader(nestKey),tempBody(prop.getOrDefault("nest.device.thermo.1","").toString(),19)));
-
-
-
+        String nestKey = PropertyIO.getProperties(configFile).getOrDefault(NEST_API_KEY, "");
+        System.out.println(RestClient.put(NEST_API_URL, NestJsonBody.getAuthHeader(nestKey),NestJsonBody.tempBody(PropertyIO.getProperties(configFile).getOrDefault("nest.device.thermo.1", ""),19)));
     }
 }
