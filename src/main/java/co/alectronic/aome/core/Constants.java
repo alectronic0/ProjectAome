@@ -14,6 +14,7 @@ public class Constants {
     public final static String FITBIT = "fitbit";
     public final static String INSTAGRAM = "instagram";
     public final static String TWITTER = "twitter";
+    public final static String FACEBOOK = "facebook";
 
     public final static String API = "api";
 
@@ -24,6 +25,7 @@ public class Constants {
     public final static String FITBIT_API = FITBIT + SP_M + API;
     public final static String INSTAGRAM_API = INSTAGRAM + SP_M + API;
     public final static String TWITTER_API = TWITTER + SP_M + API;
+    public final static String FACEBOOK_API = FACEBOOK + SP_M + API;
 
     public final static String NEST_API_KEY = NEST_API + SP_M + KEY;
     public final static String NEST_API_URL = "https://developer-api.nest.com";
@@ -42,6 +44,10 @@ public class Constants {
 
     public final static String TWITTER_API_KEY = TWITTER_API + SP_M + KEY;
     public final static String TWITTER_API_URL = "https://api.twitter.com";
+
+
+    public final static String FACEBOOK_API_KEY = FACEBOOK_API + SP_M + KEY;
+    public final static String FACEBOOK_API_URL = "http://graph.facebook.com";
 
 
 
