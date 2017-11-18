@@ -53,17 +53,26 @@ public class HueJsonBody {
 
 
     public static String detectBridge(){
-        String s = null;
-        Object json = new JSONTokener(RestClient.get("https://www.meethue.com/api/nupnp")).nextValue();
+        String s = "";
+        Object obj = new JSONTokener(RestClient.get("https://www.meethue.com/api/nupnp")).nextValue();
+        JSONObject json = null;
 
-
-        if (json instanceof JSONObject){
-            JSONObject jo = (JSONObject)json;
-            s = jo.get("internalipaddress").toString();
+        try {
+        if (obj instanceof JSONObject){
+            json = ((JSONObject)obj);
         }
-        else if (json instanceof JSONArray){
-            JSONArray jo = (JSONArray)json;
-            s = jo.getJSONObject(0).get("internalipaddress").toString();
+        else if (obj instanceof JSONArray){
+            json = ((JSONArray)obj).getJSONObject(0);
+        }else {
+            s = obj.toString();
+        }
+        }catch (Exception e){}
+
+        System.out.println(obj);
+
+
+        if(json != null){
+            s = json.get("internalipaddress").toString();
         }
 
         return  s;//detect Bridge
