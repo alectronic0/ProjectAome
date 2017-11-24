@@ -16,6 +16,7 @@ public class PropertyIO {
 
     public static Map<String,String> getProperties(String file){
         Map<String,String>  map = new LinkedHashMap<String, String>();
+
         final Properties properties = new Properties();
         InputStream inputStream = null;
         try{
@@ -36,8 +37,6 @@ public class PropertyIO {
                     e.printStackTrace();
                 }
             }
-
-
         }
 
 

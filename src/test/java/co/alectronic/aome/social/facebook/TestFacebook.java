@@ -3,6 +3,7 @@ package co.alectronic.aome.social.facebook;
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import static co.alectronic.aome.core.Constants.*;
 
@@ -12,6 +13,7 @@ import static co.alectronic.aome.core.Constants.*;
 public class TestFacebook {
 
     @Test
+    @Ignore
     public void getFacebookInfo(){
         String facebookKey = PropertyIO.getProperties(configFile).getOrDefault(FACEBOOK_API_KEY, "");
         System.out.println(facebookKey);

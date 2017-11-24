@@ -1,10 +1,7 @@
 package co.alectronic.aome.util;
 
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
-import com.sun.org.apache.bcel.internal.generic.Select;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;

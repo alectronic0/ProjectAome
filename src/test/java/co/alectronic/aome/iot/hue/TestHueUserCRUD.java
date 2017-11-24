@@ -3,6 +3,7 @@ package co.alectronic.aome.iot.hue;
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
 import org.json.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static co.alectronic.aome.core.Constants.HUE_API_KEY;
@@ -16,6 +17,7 @@ public class TestHueUserCRUD {
 
 
     @Test
+    @Ignore
     public void createDeleteTest(){
         String hueKey = PropertyIO.getProperties(configFile).getOrDefault(HUE_API_KEY, "");
 

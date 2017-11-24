@@ -2,6 +2,7 @@ package co.alectronic.aome.iot.hue;
 
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -17,10 +18,11 @@ import static co.alectronic.aome.core.Constants.HUE_API_URL;
 public class TestHueLight {
 
     @Test
+    @Ignore
     public void changeLight(){
 
-        Map prop = PropertyIO.getProperties(configFile);
-        String hueKey = prop.getOrDefault(HUE_API_KEY,"").toString();
+        Map<String,String> prop = PropertyIO.getProperties(configFile);
+        String hueKey = prop.getOrDefault(HUE_API_KEY, "");
 
         Random rand = new Random(65535);
 

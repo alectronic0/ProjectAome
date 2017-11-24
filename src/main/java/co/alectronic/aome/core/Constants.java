@@ -51,7 +51,7 @@ public class Constants {
 
 
 
-    public final static String configFile = "src/main/resources/settings.cfg";
+    public final static String configFile = "src/main/resources/settings.yml";
 
 
 

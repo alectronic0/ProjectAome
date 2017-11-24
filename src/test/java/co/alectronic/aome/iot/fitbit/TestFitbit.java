@@ -5,6 +5,7 @@ import co.alectronic.aome.util.RestClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Map;
@@ -15,16 +16,19 @@ import static co.alectronic.aome.core.Constants.configFile;
 public class TestFitbit {
 
     @Test
+    @Ignore
     public void testFitbit(){
         testFitbitPath("/1/user/-/profile.json");
     }
 
     @Test
+    @Ignore
     public void testFitbitBadges(){
         testFitbitPath("/1/user/-/badges.json");
     }
 
     @Test
+    @Ignore
     public void testFitbitDevices(){
         testFitbitPath("/1/user/-/devices.json");
     }

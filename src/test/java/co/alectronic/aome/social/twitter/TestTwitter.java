@@ -2,6 +2,7 @@ package co.alectronic.aome.social.twitter;
 
 import co.alectronic.aome.util.PropertyIO;
 import co.alectronic.aome.util.RestClient;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static co.alectronic.aome.core.Constants.*;
@@ -10,6 +11,7 @@ import static co.alectronic.aome.core.Constants.*;
 public class TestTwitter {
 
     @Test
+    @Ignore
     public void getTwitterInfo(){
         String twitterKey = PropertyIO.getProperties(configFile).getOrDefault(TWITTER_API_KEY, "");
         System.out.println(twitterKey);

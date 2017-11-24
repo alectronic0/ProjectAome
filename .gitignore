@@ -157,4 +157,5 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/maven,java,linux,intellij,windows,macos
 
-src/main/resources/settings\.cfg
+src/main/resources/settings.yml
+.idea/
